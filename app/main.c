@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "board.h"
+#include "snake.h"
 
 int main() {
 
@@ -17,7 +18,7 @@ int main() {
 
     print_board_state();
 
+    free_snake();
     free_board();
-
     return 0;
 }
