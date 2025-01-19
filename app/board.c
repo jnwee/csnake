@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "board.h"
+#include "snake.h"
 
 int *snake_board_ptr;
 int board_size;
@@ -27,22 +28,22 @@ void initialize_board(int size) {
     }
 }
 
-int check_tile(int x, int y) {
-    printf("Checking tile: %d - %d\n", x, y);
+int check_tile(struct pos pos) {
+    printf("Checking tile: %d - %d\n", pos._x, pos._y);
 
-    if (x < 0 || x >= board_size || y < 0 || y >= board_size) {
-        printf("Invalid tile position: (%d, %d)\n", x, y);
+    if (pos._x < 0 || pos._x >= board_size || pos._y < 0 || pos._y >= board_size) {
+        printf("Invalid tile position: (%d, %d)\n", pos._x, pos._y);
         return -1;
     }
 
-    return snake_board_ptr[x * board_size + y];
+    return snake_board_ptr[pos._x * board_size + pos._y];
 }
 
-void set_tile(int x, int y, int type) {
-    printf("Setting tile: %d - %d to type: %d\n", x, y, type);
+void set_tile(struct pos pos, int type) {
+    printf("Setting tile: %d - %d to type: %d\n", pos._x, pos._y, type);
 
-    if (x <= 0 || x >= board_size - 1 || y <= 0 || y >= board_size - 1) {
-        printf("Invalid tile position: (%d, %d)\n", x, y);
+    if (pos._x <= 0 || pos._x >= board_size - 1 || pos._y <= 0 || pos._y >= board_size - 1) {
+        printf("Invalid tile position: (%d, %d)\n", pos._x, pos._y);
         exit(1);
     }
 
@@ -51,7 +52,7 @@ void set_tile(int x, int y, int type) {
         exit(1);
     }
 
-    snake_board_ptr[x * board_size + y] = type;
+    snake_board_ptr[pos._x * board_size + pos._y] = type;
 }
 
 void print_board_state() {

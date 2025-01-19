@@ -51,12 +51,16 @@ struct pos advance() {
     switch (_direction) {
         case 0:
             snake_ptr[head + 1]._y = head_pos._y - 1;
+            break;
         case 1:
             snake_ptr[head + 1]._x = head_pos._x + 1;
+            break;
         case 2:
             snake_ptr[head + 1]._y = head_pos._y + 1;
+            break;
         case 3:
             snake_ptr[head + 1]._x = head_pos._x - 1;
+            break;
     }
     if (head == MAX_SIZE - 1) {
         printf("Max size of snake reached, resetting to 0... \n");
